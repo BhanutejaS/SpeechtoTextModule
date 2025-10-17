@@ -7,24 +7,24 @@ To ensure responsiveness, the module employs multithreaded audio streaming with 
 
  **Key Engineering Features**
 
-Adaptive Silence Detection: Dynamically adjusts thresholds based on real-time RMS averages for accurate speech segmentation.
+- Adaptive Silence Detection: Dynamically adjusts thresholds based on real-time RMS averages for accurate speech segmentation.
 
-Echo & Noise Suppression: Uses a rolling RMS baseline and playback gating to prevent self-capture during TTS playback.
+- Echo & Noise Suppression: Uses a rolling RMS baseline and playback gating to prevent self-capture during TTS playback.
 
-Chunk-Level Segmentation: Buffers audio streams into 1–2 s segments before passing them to Whisper for near real-time decoding.
+- Chunk-Level Segmentation: Buffers audio streams into 1–2 s segments before passing them to Whisper for near real-time decoding.
 
-Concurrency & Low Latency: Thread-safe queues (audio_q, tts_synth_q, play_q) handle parallel capture / processing to minimize blocking.
+- Concurrency & Low Latency: Thread-safe queues (audio_q, tts_synth_q, play_q) handle parallel capture / processing to minimize blocking.
 
-Context-Aware Filtering: Filters short or repetitive utterances and ignores echoed assistant responses via text-similarity metrics (difflib).
+- Context-Aware Filtering: Filters short or repetitive utterances and ignores echoed assistant responses via text-similarity metrics (difflib).
 
-Latency Tracking: Records STT latency statistics for end-to-end benchmarking and optimization.
+- Latency Tracking: Records STT latency statistics for end-to-end benchmarking and optimization.
 
 **Technical Summary**
 
-Model: Whisper Tiny (OpenAI) – optimized for low-latency streaming
+- Model: Whisper Tiny (OpenAI) – optimized for low-latency streaming
 
-Latency: < 500 ms average STT response
+- Latency: < 500 ms average STT response
 
-Frameworks: Flask–SocketIO | SoundDevice | NumPy | Whisper
+- Frameworks: Flask–SocketIO | SoundDevice | NumPy | Whisper
 
-Goal: Real-time, context-aware speech-to-speech interaction
+- Goal: Real-time, context-aware speech-to-speech interaction
